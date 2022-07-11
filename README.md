@@ -1,12 +1,17 @@
-# PridJe: A Java-Python Bridge
+# PridJe: A Java-Python Bridge (Java Call Python)
+
+![PredJe Diagram](image/PredJeDiagram.drawio.png)
 
 ## Introduction
 
-PridJe (Java-Python Bridge) provides an interface between Java programs and functions/procedures written in Python. 
+
+PridJe (Java-Python Bridge) provides an interface between Java programs and functions/procedures written in Python (Java call Python). 
 
 The usual solution of calling statistic/science/ML/AI algorithms of Python in efficient Java business programs is to set up Python-based servers and expose web APIs, but this might not be a good idea when resources are limited.
 
-![PredJe Diagram](image/PredJeDiagram.drawio.png)
+This project provides convenient interfaces (including core/mx mode) between Java programs and function procedures written in Python. It helps with the problem of lack of support when Java business processes calling python algorithm.
+
+(Chinese version of introduction is in the next chapter / 中文介绍见下一章节)
 
 ### PredJe Core
 
@@ -23,6 +28,33 @@ The default PredJe core only provides one process function, when there are more 
 This project provides a built-in multiplexing protocol that uses Json to decide which function to call and pass parameters(as long as they can be serialized to bytes, then converted by base64).
 
 The registered functions should all be written in the PridJeJsonMXFuncReg module, and correctly imported by PredJeCorePortal. PredJeCorePortal is now running the multiplexer procedures instead of the real business logic (therefore it is not recommended modifying this module if using multiplexer mode).    
+
+## 介绍
+
+PridJe（Java-Python Bridge）提供Java调用Python的接口。
+
+在高效的 Java 业务程序中调用 Python 的统计/科学/ML/AI 算法的通常解决方案是使用Python服务，用Web API调用计算服务，但在资源有限的情况下这可能效果不好。
+
+该项目在Java程序和Python编写的函数程序之间提供了方便的接口（包括core核心和mx多路复用模式）。它有助于解决Java业务流程调用python算法时缺乏支持的问题。
+
+
+### PredJe 核心
+
+PridJe 核心提供了一个本地本地接口（通过动态库/C 实现的 JNI），它使用 utf-8 字符串将参数从 Java 虚拟机传递到 Python 解释器并获取返回值。
+
+PredJe核心的Java端称为PredJeCoreEntry，Python端称为PredJeCorePortal，业务代码写在这个模块中。
+
+### PredJe 多路复用器
+
+PredJe 内核默认只提供一种处理函数，当需要使用 PredJe 内核调用多个函数时，用户可以定义自己的复用协议。
+
+#### PredJe Json 多路复用器
+
+本项目提供了一个内置的多路复用协议，使用Json来决定调用哪个函数并传递参数（只要可以序列化为字节，然后通过base64转换）。
+
+注册的函数都应该写在 PridJeJsonMXFuncReg 模块中，并由 PredJeCorePortal 正确导入。 PredJeCorePortal 现在运行的是多路复用器程序而不是真正的业务逻辑（因此如果使用多路复用器模式，不建议修改此模块）。
+
+（后续内容都用英文了）
 
 ## How to Compile PredJe
 
@@ -155,7 +187,7 @@ Try the following:
 
 
 
-## Future
+## TODO
 
 - add protobuf multiplexer
 - change the core from string to raw byte
